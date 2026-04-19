@@ -1,19 +1,13 @@
 import os
 import streamlit as st
 from dotenv import load_dotenv
-
-# Load env variables
-load_dotenv()
-
-# LangChain Imports
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.chat_models import ChatOllama
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnableLambda, RunnableParallel
 
-# ==========================================
-# PAGE CONFIGURATION FOR PREMIUM SCREENSHOTS
-# ==========================================
+load_dotenv()
+
 st.set_page_config(page_title="AI Dev Team", page_icon="🚀", layout="wide")
 
 st.markdown("""
@@ -48,12 +42,6 @@ st.markdown("""
 st.markdown('<p class="main-title">🚀 Multi-Agent AI Software Development Team</p>', unsafe_allow_html=True)
 st.markdown('<p class="sub-title">Enter a project idea, and watch 5 specialized AI agents collaboratively define, design, code, test, and review the project in parallel.</p>', unsafe_allow_html=True)
 
-
-# ==========================================
-# LANGCHAIN AGENT PIPELINE LOGIC
-# ==========================================
-
-# 1. Project Idea Prompt
 ProjectIdea = ChatPromptTemplate.from_messages(
     [
         ("system", """You are a system planner for a multi-agent AI software team.
@@ -143,11 +131,6 @@ Developer_agent = RunnableLambda(Developer)
 Tester_agent = RunnableLambda(Tester)   
 Reviewer_agent = RunnableLambda(Reviewer)
 
-
-# ==========================================
-# STREAMLIT USER INTERFACE
-# ==========================================
-
 st.markdown("---")
 
 col1, col2 = st.columns([4, 1])
@@ -169,7 +152,7 @@ if submit_btn:
     else:
         with st.spinner("🧠 Initializing AI Cores and Planning Architecture..."):
             try:
-                # Execution Pipeline
+
                 chain = ProjectIdea | llm_ola | str_parser | dictionary_maker_runnable | RunnableParallel(
                     branches={
                         "Product Manager": Product_Manager_agent, 
@@ -180,7 +163,6 @@ if submit_btn:
                     }
                 )
                 
-                # Dynamic terminal-like output indicator
                 status_placeholder = st.empty()
                 status_placeholder.info("⚡ Executing parallel workflows... (Inferencing via Ollama `mistral` model)")
                 
@@ -189,7 +171,6 @@ if submit_btn:
                 
                 status_placeholder.success("✅ **Team Pipeline Completed!** Collaboration successful.")
                 
-                # Dynamic Tabs for final output rendering
                 tab1, tab2, tab3, tab4, tab5 = st.tabs([
                     "📊 Product Manager", 
                     "🏗️ Architect", 
