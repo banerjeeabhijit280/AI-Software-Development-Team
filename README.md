@@ -33,12 +33,6 @@ Check out the visual architecture of the pipeline below! I'd love to hear your t
 
 ---
 
-## 🎨 Generated Project Banner
-![AI Software Development Team](/Users/abhijitbanerjee/.gemini/antigravity/brain/7afa5def-a40d-440f-a559-d959cf573666/ai_team_banner_1776537586805.png)
-
-*(You can download the image above and use it as the header image for your LinkedIn post or GitHub README!)*
-
----
 
 ## ⚙️ The Pipeline Architecture
 
